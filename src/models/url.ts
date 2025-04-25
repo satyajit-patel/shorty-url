@@ -15,7 +15,7 @@ export interface IUrl extends Document {
     shortUrl: string
 }
 
-const url: Model<IUrl> = mongoose.models.url || mongoose.model<IUrl>("url", urlSchema);
-// mongoose.models.url will create a collection name "url" 
+const urlModel: Model<IUrl> = mongoose.models.urlModel || mongoose.model<IUrl>("urlModel", urlSchema);
+// mongoose.models.urlModel will create a collection name "urlModel" 
 // if it doesn't exist in the db and will return a IUrl model
-export default url;
+export default urlModel;
