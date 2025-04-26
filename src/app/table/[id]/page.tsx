@@ -1,11 +1,7 @@
 import { redirect } from "next/navigation";
 import { getUrlByShortUrl } from "@/controllers/page";
 
-export default async function urlRedirect({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function urlRedirect({ params }: any) {
   const { id } = params;
   const shortUrl = `table/${id}`;
   const response = await getUrlByShortUrl(shortUrl);
