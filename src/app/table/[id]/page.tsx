@@ -1,12 +1,10 @@
 import { redirect } from "next/navigation";
 import { getUrlByShortUrl } from "@/controllers/page";
 
-interface UrlListPageProps {
-    params: { id: string }
-  }
+type PageProps = { params: { id: string } };
 
-export default async function urlRedirect({params}: UrlListPageProps) {
-    const id = params.id;
+export default async function urlRedirect({params}: PageProps) {
+    const {id} = params;
     const shortUrl = "table" + "/" + id;
     // console.log("*****", shortUrl, "************");
     const response = await getUrlByShortUrl(shortUrl);
