@@ -7,11 +7,16 @@ export async function getData() {
 }
 
 export async function createData(originalUrl: string) {
-    const shortUrl = shortId();
+    const shortUrl = "table" + "/" + shortId();
     await urlModel.create({originalUrl, shortUrl});
     return shortUrl;
 }
 
 export async function deleteData(id: string) {
     await urlModel.findByIdAndDelete(id);
+}
+
+export async function getUrlByShortUrl(shortUrl: string) {
+    const response = await urlModel.findOne({shortUrl});
+    return response;
 }
