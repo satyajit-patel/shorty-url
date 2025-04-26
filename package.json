@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.18.0",
     "@types/mongoose": "^5.11.96",
     "@types/shortid": "^2.2.0",
     "mongoose": "^8.13.3",
