@@ -11,3 +11,7 @@ export async function createData(originalUrl: string) {
     await urlModel.create({originalUrl, shortUrl});
     return shortUrl;
 }
+
+export async function deleteData(id: string) {
+    await urlModel.findByIdAndDelete(id);
+}
