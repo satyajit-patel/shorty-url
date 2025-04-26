@@ -1,4 +1,4 @@
-import urlModel, {IUrl} from "@/models/url"
+import urlModel from "@/models/url"
 import shortId from "shortid";
 
 export async function getData() {
