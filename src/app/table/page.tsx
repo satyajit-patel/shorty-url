@@ -64,11 +64,11 @@ export default async function UrlList() {
               <p className="text-gray-300">
                 <strong>Short URL:</strong>{" "}
                 <a
-                  href={process.env.NEXT_PUBLIC_BASE_URL + "/" + url.shortUrl}
+                  href={"http://localhost:3000" + "/" + url.shortUrl}
                   target="_blank"
                   className="underline hover:text-blue-300 transition"
                 >
-                  {process.env.NEXT_PUBLIC_BASE_URL + "/" + url.shortUrl}
+                  {"http://localhost:3000" + "/" + url.shortUrl}
                 </a>
               </p>
 
