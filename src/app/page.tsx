@@ -1,14 +1,16 @@
 import Link from "next/link";
+import { createData } from "@/controllers/page";
 
 const handleSubmit = async (formData: FormData) => {
   "use server"
-  const originalUrl = formData.get('originalUrl');
+  const originalUrl = formData.get('originalUrl') as string;
   // console.log("***", originalUrl, "******");
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/urls`, {
-    method: "POST",
-    body: JSON.stringify({ originalUrl })
-  });
-  console.log(response);
+  // const response = await fetch(`/api/urls`, {
+  //   method: "POST",
+  //   body: JSON.stringify({ originalUrl })
+  // });
+  // console.log(response);
+  await createData(originalUrl);
 } 
 
 export default async function Home() {

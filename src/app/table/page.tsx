@@ -1,21 +1,25 @@
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
+import { getData, deleteData } from "@/controllers/page";
 
 async function fetchUrls() {
-  const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/urls");
-  return response.json();
+  // const response = await fetch("/api/urls");
+  // return response.json();
+  const response = await getData()
+  return response;
 }
 
 // Server action to delete a URL by ID
 type DeleteUrlForm = FormData;
 async function deleteUrl(formData: DeleteUrlForm) {
   "use server";
-  const id = formData.get("id");
-  await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/urls", {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id })
-  });
+  const id = formData.get("id") as string;
+  // await fetch("/api/urls", {
+  //   method: "DELETE",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify({ id })
+  // });
+  await deleteData(id);
   revalidatePath("/urls");
 }
 
@@ -27,8 +31,11 @@ export default async function UrlList() {
   }[];
 
   try {
-    const data = await fetchUrls();
-    urlList = data.urls;
+    urlList = (await fetchUrls()).map((url) => ({
+      _id: String(url._id),
+      originalUrl: url.originalUrl,
+      shortUrl: url.shortUrl,
+    }));
   } catch (error) {
     console.error(error);
     return (

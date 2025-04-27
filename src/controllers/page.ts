@@ -1,5 +1,8 @@
+import { connectDB } from "@/configs/db";
 import urlModel from "@/models/url"
 import shortId from "shortid";
+
+connectDB();
 
 export async function getData() {
     const urls = await urlModel.find({});
